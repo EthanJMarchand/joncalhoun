@@ -7,7 +7,7 @@ import (
 
 func homehandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("content-type", "text/html; charset=utf-8")
-	fmt.Fprint(w, "<p>Welcome to my new site!!!</p>")
+	fmt.Fprint(w, "<p>Welcome to my new site!!!!!!!!!!!!!!!!</p>")
 }
 
 func contactHandler(w http.ResponseWriter, r *http.Request) {

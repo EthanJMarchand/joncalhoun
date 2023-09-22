@@ -11,4 +11,11 @@
 	{{.Meta.Visits}}
 	<p>Bio: {{.Bio}}</p>
 </body>
+<script>
+	const user = {
+		"name": {{.Name}},
+		"bio": {{.Bio}}
+	};
+	console.log(user);
+</script>
 </html>

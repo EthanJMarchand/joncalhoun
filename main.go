@@ -5,6 +5,7 @@ import (
 	"net/http"
 
 	"github.com/go-chi/chi/v5"
+	"github.com/go-chi/chi/v5/middleware"
 )
 
 func homehandler(w http.ResponseWriter, r *http.Request) {
@@ -38,11 +39,19 @@ func faqhandler(w http.ResponseWriter, r *http.Request) {
 	`)
 }
 
+func paramHandler(w http.ResponseWriter, r *http.Request) {
+	id := chi.URLParam(r, "id")
+	w.Header().Set("content-type", "text/html; charset=utf-8")
+	fmt.Fprintf(w, "The test string is %v", id)
+}
+
 func main() {
 	r := chi.NewRouter()
+	r.Use(middleware.Logger)
 	r.Get("/", homehandler)
 	r.Get("/contact", contactHandler)
 	r.Get("/faq", faqhandler)
+	r.Get("/param/{id}", paramHandler)
 	r.NotFound(func(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "404 | Page not found", http.StatusNotFound)
 	})

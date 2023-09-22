@@ -48,5 +48,4 @@ func main() {
 	})
 	fmt.Println("starting the server on :3000...")
 	http.ListenAndServe(":3000", r)
-
 }

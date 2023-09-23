@@ -6,10 +6,12 @@ import (
 )
 
 type User struct {
-	Name string
-	Age  int
-	Bio  string
-	Meta UserMeta
+	Name         string
+	Loggedin     bool
+	Age          int
+	Bio          string
+	Meta         UserMeta
+	Phonenumbers map[string]string
 }
 
 type UserMeta struct {
@@ -23,11 +25,17 @@ func main() {
 	}
 
 	u1 := User{
-		Name: "Bruce Wayne",
-		Age:  37,
-		Bio:  `<script>alert("Haha, you've been hacked!");</script>`,
+		Loggedin: false,
+		Name:     "Bruce Wayne",
+		Age:      37,
+		Bio:      `<script>alert("Haha, you've been hacked!");</script>`,
 		Meta: UserMeta{
 			Visits: 4,
+		},
+		Phonenumbers: map[string]string{
+			"miss":      "666-333-3333",
+			"odd_job":   "123-463-5673",
+			"Agent_005": "123-423-4321",
 		},
 	}
 

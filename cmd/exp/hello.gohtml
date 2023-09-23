@@ -6,17 +6,11 @@
 	<title>Document</title>
 </head>
 <body>
-	<h1>Hello, {{.Name}}</h1>
-	<p>Im {{.Age}} years old</p>
-	{{.Meta.Visits}}
-	<p>Bio: {{.Bio}}</p>
+	{{if .Loggedin}}
+		<p>You are logged in</p>
+	{{else}}
+		<p>You are not logged in.</p>
+	{{end}}
+	{{.Phonenumbers}}
 </body>
-<script>
-	const user = {
-		"name": {{.Name}},
-		"bio": {{.Bio}},
-		"age": {{.Age}}
-	};
-	console.log(user);
-</script>
 </html>

@@ -39,8 +39,15 @@ func faqhandler(w http.ResponseWriter, r *http.Request) {
 	executeTemplate(w, filepath.Join("templates", "faq.gohtml"))
 }
 
+type Data struct {
+	Id string
+}
+
 func paramHandler(w http.ResponseWriter, r *http.Request) {
-	// id := chi.URLParam(r, "id")
+	id := chi.URLParam(r, "id")
+	data := Data{
+		Id: id,
+	}
 	w.Header().Set("content-type", "text/html; charset=utf-8")
 	tplpath := filepath.Join("templates", "param.gohtml")
 	tpl, err := template.ParseFiles(tplpath)
@@ -49,7 +56,7 @@ func paramHandler(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Error parsing template", http.StatusInternalServerError)
 		return
 	}
-	err = tpl.Execute(w, nil)
+	err = tpl.Execute(w, data)
 	if err != nil {
 		log.Printf("Executing template: %v", err)
 		http.Error(w, "Error executing template", http.StatusInternalServerError)

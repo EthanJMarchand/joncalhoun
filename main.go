@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"html/template"
 	"net/http"
 
 	"github.com/go-chi/chi/v5"
@@ -10,39 +11,51 @@ import (
 
 func homehandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("content-type", "text/html; charset=utf-8")
-	fmt.Fprint(w, "<p>Welcome to my new site!!!</p>")
+	tpl, err := template.ParseFiles("templates/home.gohtml")
+	if err != nil {
+		panic(err)
+	}
+	err = tpl.Execute(w, nil)
+	if err != nil {
+		panic(err)
+	}
 }
 
 func contactHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("content-type", "text/html; charset=utf-8")
-	fmt.Fprint(w, `
-		<h1>Contact Page</h1>
-		<p>contact me at <a href="mailto:ethan@ethanmarchand.com">email me</a></p>
-	`)
+	tpl, err := template.ParseFiles("templates/contact.gohtml")
+	if err != nil {
+		panic(err)
+	}
+	err = tpl.Execute(w, nil)
+	if err != nil {
+		panic(err)
+	}
 }
 
 func faqhandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("content-type", "text/html; charset=utf-8")
-	fmt.Fprint(w, `
-		<h1>FAQ</h1>
-		<h2><Strong>Q.</strong> What is the best way to get ahold of you?</h2>
-		<p><strong>A.</strong> Phone!</p>
-		<hr>
-		<h2><Strong>Q.</strong> What is the best way to get ahold of you?</h2>
-		<p><strong>A.</strong> Phone!</p>
-		<hr>
-		<h2><Strong>Q.</strong> What is the best way to get ahold of you?</h2>
-		<p><strong>A.</strong> Phone!</p>
-		<hr>
-		<h2><Strong>Q.</strong> What is the best way to get ahold of you?</h2>
-		<p><strong>A.</strong> Phone!</p>
-	`)
+	tpl, err := template.ParseFiles("templates/faq.gohtml")
+	if err != nil {
+		panic(err)
+	}
+	err = tpl.Execute(w, nil)
+	if err != nil {
+		panic(err)
+	}
 }
 
 func paramHandler(w http.ResponseWriter, r *http.Request) {
 	id := chi.URLParam(r, "id")
 	w.Header().Set("content-type", "text/html; charset=utf-8")
-	fmt.Fprintf(w, "The test string is %v", id)
+	tpl, err := template.ParseFiles("param.gohtml")
+	if err != nil {
+		panic(err)
+	}
+	err = tpl.Execute(w, id)
+	if err != nil {
+		panic(err)
+	}
 }
 
 func main() {

@@ -3,7 +3,9 @@ package main
 import (
 	"fmt"
 	"html/template"
+	"log"
 	"net/http"
+	"path/filepath"
 
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
@@ -11,50 +13,70 @@ import (
 
 func homehandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("content-type", "text/html; charset=utf-8")
-	tpl, err := template.ParseFiles("templates/home.gohtml")
+	tplpath := filepath.Join("templates", "home.gohtml")
+	tpl, err := template.ParseFiles(tplpath)
 	if err != nil {
-		panic(err)
+		log.Printf("Parsing template: %v", err)
+		http.Error(w, "Error parsing template", http.StatusInternalServerError)
+		return
 	}
 	err = tpl.Execute(w, nil)
 	if err != nil {
-		panic(err)
+		log.Printf("Executing template: %v", err)
+		http.Error(w, "Error executing template", http.StatusInternalServerError)
+		return
 	}
 }
 
 func contactHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("content-type", "text/html; charset=utf-8")
-	tpl, err := template.ParseFiles("templates/contact.gohtml")
+	tplpath := filepath.Join("templates", "contact.gohtml")
+	tpl, err := template.ParseFiles(tplpath)
 	if err != nil {
-		panic(err)
+		log.Printf("Parsing template: %v", err)
+		http.Error(w, "Error parsing template", http.StatusInternalServerError)
+		return
 	}
 	err = tpl.Execute(w, nil)
 	if err != nil {
-		panic(err)
+		log.Printf("Executing template: %v", err)
+		http.Error(w, "Error executing template", http.StatusInternalServerError)
+		return
 	}
 }
 
 func faqhandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("content-type", "text/html; charset=utf-8")
-	tpl, err := template.ParseFiles("templates/faq.gohtml")
+	tplpath := filepath.Join("templates", "faq.gohtml")
+	tpl, err := template.ParseFiles(tplpath)
 	if err != nil {
-		panic(err)
+		log.Printf("Parsing template: %v", err)
+		http.Error(w, "Error parsing template", http.StatusInternalServerError)
+		return
 	}
 	err = tpl.Execute(w, nil)
 	if err != nil {
-		panic(err)
+		log.Printf("Executing template: %v", err)
+		http.Error(w, "Error executing template", http.StatusInternalServerError)
+		return
 	}
 }
 
 func paramHandler(w http.ResponseWriter, r *http.Request) {
-	id := chi.URLParam(r, "id")
+	// id := chi.URLParam(r, "id")
 	w.Header().Set("content-type", "text/html; charset=utf-8")
-	tpl, err := template.ParseFiles("param.gohtml")
+	tplpath := filepath.Join("templates", "param.gohtml")
+	tpl, err := template.ParseFiles(tplpath)
 	if err != nil {
-		panic(err)
+		log.Printf("Parsing template: %v", err)
+		http.Error(w, "Error parsing template", http.StatusInternalServerError)
+		return
 	}
-	err = tpl.Execute(w, id)
+	err = tpl.Execute(w, nil)
 	if err != nil {
-		panic(err)
+		log.Printf("Executing template: %v", err)
+		http.Error(w, "Error executing template", http.StatusInternalServerError)
+		return
 	}
 }
 

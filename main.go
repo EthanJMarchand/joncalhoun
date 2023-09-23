@@ -11,10 +11,9 @@ import (
 	"github.com/go-chi/chi/v5/middleware"
 )
 
-func homehandler(w http.ResponseWriter, r *http.Request) {
+func executeTemplate(w http.ResponseWriter, filepath string) {
 	w.Header().Set("content-type", "text/html; charset=utf-8")
-	tplpath := filepath.Join("templates", "home.gohtml")
-	tpl, err := template.ParseFiles(tplpath)
+	tpl, err := template.ParseFiles(filepath)
 	if err != nil {
 		log.Printf("Parsing template: %v", err)
 		http.Error(w, "Error parsing template", http.StatusInternalServerError)
@@ -26,40 +25,18 @@ func homehandler(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Error executing template", http.StatusInternalServerError)
 		return
 	}
+}
+
+func homehandler(w http.ResponseWriter, r *http.Request) {
+	executeTemplate(w, filepath.Join("templates", "home.gohtml"))
 }
 
 func contactHandler(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("content-type", "text/html; charset=utf-8")
-	tplpath := filepath.Join("templates", "contact.gohtml")
-	tpl, err := template.ParseFiles(tplpath)
-	if err != nil {
-		log.Printf("Parsing template: %v", err)
-		http.Error(w, "Error parsing template", http.StatusInternalServerError)
-		return
-	}
-	err = tpl.Execute(w, nil)
-	if err != nil {
-		log.Printf("Executing template: %v", err)
-		http.Error(w, "Error executing template", http.StatusInternalServerError)
-		return
-	}
+	executeTemplate(w, filepath.Join("templates", "contact.gohtml"))
 }
 
 func faqhandler(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("content-type", "text/html; charset=utf-8")
-	tplpath := filepath.Join("templates", "faq.gohtml")
-	tpl, err := template.ParseFiles(tplpath)
-	if err != nil {
-		log.Printf("Parsing template: %v", err)
-		http.Error(w, "Error parsing template", http.StatusInternalServerError)
-		return
-	}
-	err = tpl.Execute(w, nil)
-	if err != nil {
-		log.Printf("Executing template: %v", err)
-		http.Error(w, "Error executing template", http.StatusInternalServerError)
-		return
-	}
+	executeTemplate(w, filepath.Join("templates", "faq.gohtml"))
 }
 
 func paramHandler(w http.ResponseWriter, r *http.Request) {

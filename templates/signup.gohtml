@@ -1,0 +1,17 @@
+{{template "header" .}}
+<section>
+  <form action="/users" method="post">
+    <div>
+      <label for="email">Email Address</label>
+      <input name="email" id="email" type="email" required autocomplete="email">
+    </div>
+    <div>
+      <label for="password">Password</label>
+      <input  name="password" id="password" type="password" required>
+    </div>
+    <div>
+      <input type="submit" value="Sign up">
+    </div>
+  </form>
+</section>
+{{template "footer" .}}

@@ -1,15 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Document</title>
-</head>
-<body>
-	<a href="http://localhost:3000/">Home Page</a>
-	<a href="#">Contact Page</a>
-	<a href="http://localhost:3000/faq">FAQ Page</a>
-	<h1>Welcome to the contact page</h1>
+{{template "header"}}
+<div class="p-6">
+  <h1 class="text-4xl font-bold">Contact page</h1>
+</div>
 	<form action="">
 		<label for="name">Name</label>
 		<input type="text" name="name" id="name"><br>
@@ -21,5 +13,4 @@
 
 		
 	</form>
-</body>
-</html>
+{{template "footer"}}

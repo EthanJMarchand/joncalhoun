@@ -6,20 +6,15 @@
 	<title>Document</title>
 </head>
 <body>
-	<h1>FAQ</h1>
-	<h2><Strong>Q.</strong> What is the best way to get ahold of you?</h2>
-	<p><strong>A.</strong> Phone!</p>
-	<hr>
-	<h2><Strong>Q.</strong> What is the best way to get ahold of you?</h2>
-	<p><strong>A.</strong> Phone!</p>
-	<hr>
-	<h2><Strong>Q.</strong> What is the best way to get ahold of you?</h2>
-	<p><strong>A.</strong> Phone!</p>
-	<hr>
-	<h2><Strong>Q.</strong> What is the best way to get ahold of you?</h2>
-	<p><strong>A.</strong> Phone!</p>
 	<a href="http://localhost:3000/">Home Page</a>
 	<a href="http://localhost:3000/contact">Contact Page</a>
 	<a href="#">FAQ Page</a>
+	<h1>FAQ</h1>
+	{{range .}}
+		{{template "qa" .}}
+	{{end}}
+	{{define "qa"}}
+	<li><b>{{.Question}}</b>{{.Answer}}</li>
+	{{end}}
 </body>
 </html>

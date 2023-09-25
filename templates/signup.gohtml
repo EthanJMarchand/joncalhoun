@@ -1,17 +1,26 @@
 {{template "header" .}}
 <section>
-  <form action="/users" method="post">
-    <div>
-      <label for="email">Email Address</label>
-      <input name="email" id="email" type="email" required autocomplete="email">
+  <div class="py-12 flex justify-center">
+    <div class="p-8 bg-white rounded shadow">
+      <h1 class="px-14 pt-4 pb-8 text-3xl font-bold text-slate-800">Sign up for an account</h1>
+      <form action="/users" method="post">
+        <div class="pb-6">
+          <label class="block" for="email">Email Address</label>
+          <input class="w-full rounded"  name="email" id="email" type="email" required autocomplete="email">
+        </div>
+        <div>
+          <label class="block" for="password">Password</label>
+          <input class="w-full rounded" name="password" id="password" type="password" required>
+        </div>
+        <div>
+          <input class="px-8 py-2 bg-stone-300 rounded mt-6 w-full cursor-pointer hover:bg-stone-200" type="submit" value="Sign up">
+        </div>
+        <div class="py-4 w-full flex justify-between text-xs text-stone-500">
+          <P>Already have an account? <a href="/signin" class="underline">Sign in</a></P>
+          <p><a href="/reset-pw" class="underline">Forgot your password?</a></p>
+        </div>
+      </form>
     </div>
-    <div>
-      <label for="password">Password</label>
-      <input  name="password" id="password" type="password" required>
-    </div>
-    <div>
-      <input type="submit" value="Sign up">
-    </div>
-  </form>
+  </div>
 </section>
 {{template "footer" .}}

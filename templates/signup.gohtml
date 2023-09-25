@@ -6,11 +6,11 @@
       <form action="/users" method="post">
         <div class="pb-6">
           <label class="block" for="email">Email Address</label>
-          <input class="w-full rounded"  name="email" id="email" type="email" required autocomplete="email">
+          <input class="w-full rounded"  name="email" id="email" type="email" required autocomplete="email" value="{{.Email}}" {{if not .Email}}autofocus{{end}}>
         </div>
         <div>
           <label class="block" for="password">Password</label>
-          <input class="w-full rounded" name="password" id="password" type="password" required>
+          <input class="w-full rounded" name="password" id="password" type="password" required {{if .Email}}autofocus{{end}}>
         </div>
         <div>
           <input class="px-8 py-2 bg-stone-300 rounded mt-6 w-full cursor-pointer hover:bg-stone-200" type="submit" value="Sign up">

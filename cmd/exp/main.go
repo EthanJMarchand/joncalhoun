@@ -1,46 +1,22 @@
 package main
 
 import (
-	"html/template"
-	"os"
+	"database/sql"
+	"fmt"
+
+	_ "github.com/jackc/pgx/v4/stdlib"
 )
 
-type User struct {
-	Name         string
-	Loggedin     bool
-	Age          int
-	Bio          string
-	Meta         UserMeta
-	Phonenumbers map[string]string
-}
-
-type UserMeta struct {
-	Visits int
-}
-
 func main() {
-	t, err := template.ParseFiles("hello.gohtml")
+	db, err := sql.Open("pgx", "host=localhost port=5432 user=baloo password=junglebook dbname=jon_calhoun sslmode=disable")
 	if err != nil {
 		panic(err)
 	}
+	defer db.Close()
 
-	u1 := User{
-		Loggedin: false,
-		Name:     "Bruce Wayne",
-		Age:      37,
-		Bio:      `<script>alert("Haha, you've been hacked!");</script>`,
-		Meta: UserMeta{
-			Visits: 4,
-		},
-		Phonenumbers: map[string]string{
-			"miss":      "666-333-3333",
-			"odd_job":   "123-463-5673",
-			"Agent_005": "123-423-4321",
-		},
-	}
-
-	err = t.Execute(os.Stdout, u1)
+	err = db.Ping()
 	if err != nil {
 		panic(err)
 	}
+	fmt.Println("connected")
 }

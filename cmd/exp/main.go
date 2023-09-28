@@ -76,7 +76,7 @@ func main() {
 	// }
 	// fmt.Println("User created. id = ", id)
 
-	// Query a single record
+	// // Query a single record
 	// id := 3
 	// row := db.QueryRow(`
 	// 	SELECT name, email

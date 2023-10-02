@@ -5,8 +5,6 @@
       <h1 class="px-14 pt-4 pb-8 text-3xl font-bold text-slate-800">Sign up for an account</h1>
       <form action="/users" method="post">
         <div class="pb-6">
-          <label for="pic">Profile Pic</label>
-          <input type="file" name="pic" id="pic" class="block" accept=".jpg, .jpeg, .png">
           <label class="block" for="email">Email Address</label>
           <input class="w-full rounded"  name="email" id="email" type="email" required autocomplete="email" value="{{.Email}}" {{if not .Email}}autofocus{{end}}>
         </div>
